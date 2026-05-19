@@ -1,12 +1,16 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>YPS Resort | Royal Banquets & Events</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-    
+
     <style>
+
         :root {
             --royal-blue: #002366;
             --gold: #d4af37;
@@ -15,26 +19,38 @@
             --text-dark: #1a1a1a;
         }
 
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
         body {
             font-family: 'Lato', sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: var(--white);
             color: var(--text-dark);
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
-        /* --- Navigation --- */
+        img{
+            max-width:100%;
+            display:block;
+        }
+
+        /* ================= NAVBAR ================= */
+
         nav {
             background: var(--white);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 8%;
+            padding: 15px 5%;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            flex-wrap: wrap;
         }
 
         .logo {
@@ -45,57 +61,83 @@
             letter-spacing: 1px;
         }
 
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
         .nav-links a {
             text-decoration: none;
             color: var(--royal-blue);
-            margin-left: 30px;
             font-weight: 700;
             font-size: 14px;
             text-transform: uppercase;
+            transition: 0.3s;
         }
 
-        /* --- Hero Section --- */
+        .nav-links a:hover{
+            color: var(--gold);
+        }
+
+        /* ================= HERO SECTION ================= */
+
         .hero {
-            height: 70vh;
-            background: linear-gradient(rgba(0, 35, 102, 0.6), rgba(0, 35, 102, 0.6)), 
-                        url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1500');
+            min-height: 75vh;
+
+            background:
+            linear-gradient(rgba(0, 35, 102, 0.65), rgba(0, 35, 102, 0.65)),
+            url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1500');
+
             background-size: cover;
             background-position: center;
+
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
             color: white;
             text-align: center;
+            padding: 40px 20px;
         }
 
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            margin: 0;
+            font-size: clamp(2.2rem, 8vw, 4.5rem);
             text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             letter-spacing: 2px;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
-        /* --- The Vertical Booking Bar (Fixed Structure) --- */
+        /* ================= BOOKING BAR ================= */
+
         .booking-bar {
             background: var(--white);
-            width: 85%;
+            width: 90%;
             max-width: 1100px;
+
             margin: -60px auto 0;
+
             padding: 30px;
-            border-radius: 10px;
+
+            border-radius: 12px;
+
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
             gap: 20px;
+
             position: relative;
             z-index: 10;
+
             border-bottom: 4px solid var(--gold);
         }
 
@@ -112,23 +154,31 @@
             text-transform: uppercase;
         }
 
-        .input-group select, .input-group input {
-            padding: 12px;
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
+        .input-group select,
+        .input-group input {
+
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
             font-family: inherit;
-            outline: none;
             background: var(--soft-gray);
+            outline: none;
+            width: 100%;
         }
 
         .btn-book {
+
             background: var(--royal-blue);
             color: white;
+
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
+
             padding: 15px;
+
             font-weight: 700;
             cursor: pointer;
+
             transition: 0.3s;
             margin-top: auto;
         }
@@ -137,99 +187,212 @@
             background: var(--gold);
         }
 
-        /* --- Featured Events --- */
+        /* ================= SECTION TITLE ================= */
+
         .section-title {
             text-align: center;
-            margin: 80px 0 40px;
+            margin: 90px 0 40px;
+            padding: 0 20px;
         }
 
         .section-title h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             color: var(--royal-blue);
         }
 
+        .gold-divider {
+            width: 60px;
+            height: 4px;
+            background: var(--gold);
+            margin: 18px auto;
+            border-radius: 20px;
+        }
+
+        /* ================= EVENT GRID ================= */
+
         .event-grid {
+
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+            grid-template-columns:
+            repeat(auto-fit, minmax(260px, 1fr));
+
             gap: 30px;
-            padding: 0 8% 80px;
+
+            padding: 0 5% 80px;
         }
 
         .event-card {
+
             background: var(--white);
-            border: 1px solid #eee;
-            transition: 0.4s;
+
+            border-radius: 12px;
+
             overflow: hidden;
+
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+
+            transition: 0.4s;
+
             text-align: center;
         }
 
         .event-card:hover {
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            transform: translateY(-5px);
+
+            transform: translateY(-8px);
+
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
         }
 
         .event-card img {
+
             width: 100%;
-            height: 250px;
+            height: 240px;
             object-fit: cover;
         }
 
         .event-card h3 {
+
             font-family: 'Playfair Display', serif;
+
             margin: 20px 0 10px;
+
             color: var(--royal-blue);
+
+            padding: 0 10px;
         }
 
         .event-card p {
-            padding: 0 20px 20px;
-            font-size: 14px;
+
+            padding: 0 20px 25px;
+
+            font-size: 15px;
+
             color: #666;
-            line-height: 1.6;
+
+            line-height: 1.7;
         }
 
-        /* --- Footer --- */
+        /* ================= FOOTER ================= */
+
         footer {
+
             background: var(--royal-blue);
+
             color: white;
-            padding: 50px 8%;
+
             text-align: center;
+
+            padding: 60px 20px;
         }
 
-        .gold-divider {
-            width: 50px;
-            height: 3px;
-            background: var(--gold);
-            margin: 20px auto;
+        footer p{
+
+            margin-top: 12px;
+            line-height: 1.7;
         }
+
+        /* ================= MOBILE RESPONSIVE ================= */
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .booking-bar { grid-template-columns: 1fr; margin-top: -20px; width: 90%; }
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 18px 20px;
+            }
+
+            .logo{
+                font-size:24px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a{
+                font-size:13px;
+            }
+
+            .hero {
+                min-height: 65vh;
+                padding: 70px 20px;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                letter-spacing: 1px;
+            }
+
+            .booking-bar {
+
+                width: 92%;
+
+                padding: 20px;
+
+                margin-top: -30px;
+
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                margin-top: 70px;
+            }
+
+            .event-grid {
+                grid-template-columns: 1fr;
+                padding: 0 20px 60px;
+            }
+
+            .event-card img {
+                height: 220px;
+            }
+
+            footer{
+                padding:50px 20px;
+            }
         }
+
     </style>
 </head>
+
 <body>
 
+    <!-- ================= NAVBAR ================= -->
+
     <nav>
+
         <div class="logo">YPS RESORT</div>
+
         <div class="nav-links">
             <a href="#">Home</a>
             <a href="#">Gallery</a>
             <a href="#">Contact Us</a>
             <a href="#">Sign In</a>
         </div>
+
     </nav>
 
+    <!-- ================= HERO ================= -->
+
     <section class="hero">
+
         <h1>Plan Your Royal Event</h1>
+
         <p>MEMORIES THAT LAST A LIFETIME</p>
+
     </section>
 
+    <!-- ================= BOOKING BAR ================= -->
+
     <div class="booking-bar">
+
         <div class="input-group">
             <label>Select Event</label>
+
             <select>
+
                 <option>Wedding Ceremony</option>
                 <option>Upnayan Sanskar</option>
                 <option>Engagement Ceremony</option>
@@ -243,49 +406,119 @@
                 <option>Seminar</option>
                 <option>Workshop</option>
                 <option>Concert</option>
+
             </select>
         </div>
+
         <div class="input-group">
+
             <label>Event Date</label>
+
             <input type="date">
+
         </div>
+
         <div class="input-group">
+
             <label>Guests (less than 300)</label>
-            <input type="number" id="guest" min="1" max="300">
+
+            <input type="number" min="1" max="300">
+
         </div>
-        <button class="btn-book">Check Availability</button>
+
+        <button class="btn-book">
+
+            Check Availability
+
+        </button>
+
     </div>
+
+    <!-- ================= SECTION TITLE ================= -->
 
     <section class="section-title">
+
         <h2>Grand Celebrations</h2>
+
         <div class="gold-divider"></div>
+
     </section>
 
+    <!-- ================= EVENT GRID ================= -->
+
     <div class="event-grid">
+
         <div class="event-card">
+
             <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=500" alt="Wedding">
+
             <h3>Royal Weddings</h3>
-            <p>From floral arrangements to gourmet catering, we make your dream wedding a majestic reality.</p>
+
+            <p>
+                From floral arrangements to gourmet catering,
+                we make your dream wedding a majestic reality.
+            </p>
+
         </div>
+
         <div class="event-card">
+
             <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=500" alt="Corporate">
+
             <h3>Corporate Excellence</h3>
-            <p>State-of-the-art conference facilities designed for high-impact seminars and workshops.</p>
+
+            <p>
+                State-of-the-art conference facilities designed
+                for high-impact seminars and workshops.
+            </p>
+
         </div>
+
         <div class="event-card">
+
             <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=500" alt="Concert">
+
             <h3>Concerts & Galas</h3>
-            <p>Spacious lawns and acoustics-ready halls for grand musical nights and cultural events.</p>
+
+            <p>
+                Spacious lawns and acoustics-ready halls
+                for grand musical nights and cultural events.
+            </p>
+
         </div>
+
     </div>
 
+    <!-- ================= FOOTER ================= -->
+
     <footer>
-        <div class="logo" style="color:white">YPS RESORT</div>
-        <p>Khabra, Muzafarpur, National Highway 28</p>
-        <p>Email: info@ypsresort.com | Phone: +91 98765 XXXXX</p>
+
+        <div class="logo" style="color:white;">
+
+            YPS RESORT
+
+        </div>
+
+        <p>
+            Khabra, Muzaffarpur, National Highway 28
+        </p>
+
+        <p>
+            Email: info@ypsresort.com
+            <br>
+            Phone: +91 98765 XXXXX
+        </p>
+
         <div class="gold-divider"></div>
-        <p style="font-size: 12px; opacity: 0.7;">&copy; 2026 YPS Resort. All Rights Reserved.</p>
+
+        <p style="font-size:12px; opacity:0.7;">
+
+            © 2026 YPS Resort. All Rights Reserved.
+
+        </p>
+
     </footer>
 
 </body>
 </html>
+```
